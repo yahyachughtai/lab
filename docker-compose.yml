@@ -1,0 +1,75 @@
+version: '3.8'
+services:
+  api-gateway:
+    build:
+      context: ./Lab_sessional-main/Cafe_Management_System/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    networks:
+      - net1
+
+  
+  customer-services:
+    build:
+      context: ./Lab_sessional-main/Cafe_Management_System/customer-services
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    networks:
+      - net1
+
+  inventory-services:
+    build:
+      context: ./Lab_sessional-main/Cafe_Management_System/inventory-services
+      dockerfile: Dockerfile
+    ports:
+      - "3002:80"
+    networks:
+      - net1
+
+  menu-services:
+    build:
+      context: ./Lab_sessional-main/Cafe_Management_System/menu-services
+      dockerfile: Dockerfile
+    ports:
+      - "3003:80"
+    networks:
+      - net1
+
+  order-services:
+    build:
+      context: ./Lab_sessional-main/Cafe_Management_System/order-services
+      dockerfile: Dockerfile
+    ports:
+      - "3004:80"
+    networks:
+      - net1
+
+  payment-services:
+    build:
+      context: ./Lab_sessional-main/Cafe_Management_System/payment-services
+      dockerfile: Dockerfile
+    ports:
+      - "3005:80"
+    networks:
+      - net1
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - net1
+      - net2
+
+volumes:
+  mongo-data:
+
+networks:
+  net1:
+    external: true
+  net2:
+    external: true
